@@ -1,0 +1,238 @@
+/**
+ * Boss Strategy Panel Styling
+ * Follows the Group Ironmen UI consistency standards
+ */
+
+.boss-strategy-panel {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.boss-strategy-panel .panel-title {
+  font-family: "rsbold";
+  color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 10px;
+}
+
+.boss-strategy-panel .card-header {
+  background-color: var(--elevated);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.boss-strategy-panel .card-body {
+  padding: 20px;
+}
+
+/* Boss and Player Selection */
+.boss-strategy-panel .form-label {
+  font-family: "rssmall";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 5px;
+}
+
+.boss-strategy-panel .form-select {
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  border: 1px solid var(--light-border);
+  font-family: "rssmall";
+  padding: 8px 12px;
+}
+
+.boss-strategy-panel .form-check-label {
+  font-family: "rssmall";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+/* Tabs Styling */
+.boss-strategy-panel .boss-tabs .nav-link {
+  font-family: "rssmall";
+  color: var(--primary-text);
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s ease;
+}
+
+.boss-strategy-panel .boss-tabs .nav-link.active {
+  color: var(--orange);
+  background-color: var(--background);
+  border-bottom-color: var(--background);
+}
+
+.boss-strategy-panel .boss-tabs .nav-link:hover:not(.active) {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* Gear Setups */
+.gear-setups-container {
+  background-color: var(--background);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.gear-setup-list .setup-button {
+  font-family: "rssmall";
+  background-color: var(--orange);
+  border-color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s ease;
+}
+
+.gear-setup-list .setup-button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.gear-setup-list .setup-button.btn-outline-primary {
+  background-color: transparent;
+  color: var(--orange);
+}
+
+.selected-gear-setup {
+  margin-top: 20px;
+}
+
+.selected-gear-setup h4 {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 15px;
+}
+
+.setup-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.gear-grid {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.gear-placeholder {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-family: "rssmall";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.setup-stats {
+  flex: 1;
+  min-width: 300px;
+}
+
+.setup-stats h5 {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 10px;
+}
+
+.stats-table {
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  border-color: var(--light-border);
+}
+
+.stats-table th,
+.stats-table td {
+  font-family: "rssmall";
+  text-shadow: 1.3px 1.3px var(--black);
+  padding: 8px 12px;
+}
+
+/* Boss Info & Fight Mechanics */
+.boss-info h4,
+.fight-mechanics h4 {
+  font-family: "rsbold";
+  color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 15px;
+}
+
+.boss-info-table {
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  border-color: var(--light-border);
+}
+
+.boss-info-table td {
+  font-family: "rssmall";
+  text-shadow: 1.3px 1.3px var(--black);
+  padding: 8px 12px;
+}
+
+.mechanics-description {
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+  padding: 15px;
+  border-radius: 4px;
+  font-family: "rssmall";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+/* Slayer Recommendations */
+.slayer-recommendations h4 {
+  font-family: "rsbold";
+  color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 15px;
+}
+
+.slayer-recommendations table {
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  border-color: var(--light-border);
+}
+
+.slayer-recommendations th,
+.slayer-recommendations td {
+  font-family: "rssmall";
+  text-shadow: 1.3px 1.3px var(--black);
+  padding: 8px 12px;
+}
+
+.boss-rec {
+  margin-bottom: 5px;
+}
+
+/* Loading State */
+.osrs-spinner {
+  border: 3px solid rgba(255, 152, 31, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--orange);
+  width: 40px;
+  height: 40px;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .setup-details {
+    flex-direction: column;
+  }
+}

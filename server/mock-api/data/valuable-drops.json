@@ -1,0 +1,74 @@
+{
+  "drops": [
+    {
+      "drop_id": 1683839500000,
+      "member_name": "TestPlayer1",
+      "item_id": 4151,
+      "item_name": "Abyssal whip",
+      "item_quantity": 1,
+      "item_value": 1500000,
+      "total_value": 1500000,
+      "source_name": "Abyssal demon",
+      "x_coord": 3152,
+      "y_coord": 9911,
+      "z_coord": 0,
+      "timestamp": "2025-05-12T14:30:00.000Z"
+    },
+    {
+      "drop_id": 1683925900000,
+      "member_name": "TestPlayer1",
+      "item_id": 11920,
+      "item_name": "Dragon warhammer",
+      "item_quantity": 1,
+      "item_value": 39000000,
+      "total_value": 39000000,
+      "source_name": "Lizardman shaman",
+      "x_coord": 1314,
+      "y_coord": 3598,
+      "z_coord": 0,
+      "timestamp": "2025-05-13T16:20:00.000Z"
+    },
+    {
+      "drop_id": 1684012300000,
+      "member_name": "TestPlayer2",
+      "item_id": 11798,
+      "item_name": "Dragon claws",
+      "item_quantity": 1,
+      "item_value": 65000000,
+      "total_value": 65000000,
+      "source_name": "Chambers of Xeric",
+      "x_coord": null,
+      "y_coord": null,
+      "z_coord": null,
+      "timestamp": "2025-05-14T10:10:00.000Z"
+    },
+    {
+      "drop_id": 1684098700000,
+      "member_name": "TestPlayer2",
+      "item_id": 11286,
+      "item_name": "Draconic visage",
+      "item_quantity": 1,
+      "item_value": 8000000,
+      "total_value": 8000000,
+      "source_name": "Vorkath",
+      "x_coord": null,
+      "y_coord": null,
+      "z_coord": null,
+      "timestamp": "2025-05-14T18:45:00.000Z"
+    },
+    {
+      "drop_id": 1684185100000,
+      "member_name": "TestPlayer1",
+      "item_id": 21034,
+      "item_name": "Twisted bow",
+      "item_quantity": 1,
+      "item_value": 1200000000,
+      "total_value": 1200000000,
+      "source_name": "Chambers of Xeric",
+      "x_coord": null,
+      "y_coord": null,
+      "z_coord": null,
+      "timestamp": "2025-05-15T12:30:00.000Z"
+    }
+  ]
+}

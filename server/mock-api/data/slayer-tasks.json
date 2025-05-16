@@ -1,0 +1,66 @@
+{
+  "members": {
+    "TestPlayer1": {
+      "tasks": [
+        {
+          "task_id": 1683839481000,
+          "monster_name": "Abyssal demons",
+          "quantity": 186,
+          "slayer_master": "Duradel",
+          "is_complete": true,
+          "is_boss_task": false,
+          "assigned_at": "2025-05-12T12:30:00.000Z",
+          "completed_at": "2025-05-13T14:45:00.000Z"
+        },
+        {
+          "task_id": 1683925881000,
+          "monster_name": "Kalphite",
+          "quantity": 142,
+          "slayer_master": "Duradel",
+          "is_complete": true,
+          "is_boss_task": false,
+          "assigned_at": "2025-05-13T15:00:00.000Z",
+          "completed_at": "2025-05-14T10:20:00.000Z"
+        },
+        {
+          "task_id": 1684012281000,
+          "monster_name": "Kraken",
+          "quantity": 125,
+          "slayer_master": "Duradel",
+          "is_complete": false,
+          "is_boss_task": true,
+          "assigned_at": "2025-05-14T11:00:00.000Z",
+          "completed_at": null
+        }
+      ],
+      "slayer_points": 435,
+      "task_streak": 24
+    },
+    "TestPlayer2": {
+      "tasks": [
+        {
+          "task_id": 1683839482000,
+          "monster_name": "Cave kraken",
+          "quantity": 135,
+          "slayer_master": "Konar",
+          "is_complete": true,
+          "is_boss_task": false,
+          "assigned_at": "2025-05-12T14:20:00.000Z",
+          "completed_at": "2025-05-13T19:35:00.000Z"
+        },
+        {
+          "task_id": 1683925882000,
+          "monster_name": "Gargoyles",
+          "quantity": 178,
+          "slayer_master": "Konar",
+          "is_complete": false,
+          "is_boss_task": false,
+          "assigned_at": "2025-05-13T20:00:00.000Z",
+          "completed_at": null
+        }
+      ],
+      "slayer_points": 246,
+      "task_streak": 15
+    }
+  }
+}

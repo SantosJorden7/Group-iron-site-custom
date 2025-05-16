@@ -1,0 +1,85 @@
+/* SyncStatusWidget.css */
+.sync-status-widget {
+  background-color: var(--background);
+  border: 2px solid var(--light-border);
+  color: var(--primary-text);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.sync-status-widget .card-header {
+  background-color: var(--elevated);
+  border-bottom: 1px solid var(--light-border);
+  padding: 10px 15px;
+}
+
+.sync-status-widget .card-header h5 {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.sync-status-widget .sync-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sync-status-widget .status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "rssmall";
+}
+
+.sync-status-widget .status-item .label {
+  font-weight: bold;
+  color: var(--primary-text);
+  opacity: 0.85;
+}
+
+.sync-status-widget .status-item .value {
+  text-align: right;
+}
+
+/* Inline version styling */
+.sync-status-inline {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-left: 10px;
+}
+
+/* Button styling */
+.sync-status-widget .btn {
+  font-family: "rssmall";
+  text-shadow: 1px 1px var(--black);
+  transition: all 0.2s;
+}
+
+.sync-status-widget .btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Status color classes */
+.sync-status-widget .text-success {
+  color: #20c120 !important;
+  text-shadow: 0.8px 0.8px var(--black);
+}
+
+.sync-status-widget .text-warning {
+  color: #ffb347 !important;
+  text-shadow: 0.8px 0.8px var(--black);
+}
+
+.sync-status-widget .text-danger {
+  color: #c12020 !important;
+  text-shadow: 0.8px 0.8px var(--black);
+}
+
+.sync-status-widget .text-info {
+  color: #1e82cc !important;
+  text-shadow: 0.8px 0.8px var(--black);
+}

@@ -1,0 +1,7 @@
+ccc291a9bce9228ea22b5c161e80137205431322 commit	refs/heads/master
+8a54fb63e73696b383530f49bbc3c38b69a686f7 commit	refs/remotes/origin/HEAD
+6e53d6b33e14349e575f6ee5248ac90180404b54 commit	refs/remotes/origin/add-conditional-searching
+fd4c8cc4bbf02a0e3ad9d16cb79d587b7e847473 commit	refs/remotes/origin/collection-log
+c0a2585f34f2c06c78b871ea13be750addc73689 commit	refs/remotes/origin/fix-exact-searches
+8a54fb63e73696b383530f49bbc3c38b69a686f7 commit	refs/remotes/origin/master
+abf3a799ff580495f001be7b48ff7dccf217be50 tag	refs/tags/v1.0.0

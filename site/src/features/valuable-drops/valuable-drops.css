@@ -1,0 +1,230 @@
+/* Valuable Drops feature styling */
+
+.valuable-drops-container {
+  background-color: var(--background);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.feature-title {
+  color: var(--orange);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  border-bottom: 1px solid var(--light-border);
+  padding-bottom: 10px;
+  font-family: "rsbold", ui-sans-serif, Arial, sans-serif;
+}
+
+/* Filters section */
+.filter-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--elevated);
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+}
+
+.filters-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 150px;
+}
+
+.filter-group label {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--light-border);
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: "rssmall", ui-sans-serif, Arial, sans-serif;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Drops table styles */
+.drops-table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.drops-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.drops-table th,
+.drops-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--light-border);
+  word-break: break-word;
+}
+
+.drops-table th {
+  background-color: var(--elevated);
+  font-weight: 600;
+  color: var(--primary-text);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-bottom: 2px solid var(--light-border);
+}
+
+.drops-table th:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.drops-table tr:hover {
+  background-color: var(--elevated);
+}
+
+/* Sort indicator */
+.sort-indicator {
+  margin-left: 5px;
+}
+
+/* Value-based styling */
+.value-common {
+  color: var(--primary-text);
+}
+
+.value-uncommon {
+  color: var(--green);
+}
+
+.value-rare {
+  color: #0070dd;
+}
+
+.value-epic {
+  color: #a335ee;
+}
+
+.value-legendary {
+  color: var(--orange);
+}
+
+/* Load more button */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-primary,
+.button-secondary {
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  border: none;
+  font-family: "rssmall", ui-sans-serif, Arial, sans-serif;
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.button-primary {
+  background-color: var(--orange);
+  color: var(--primary-text);
+}
+
+.button-primary:hover {
+  background-color: #ffb151;
+}
+
+.button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button-secondary {
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  border: 1px solid var(--light-border);
+}
+
+.button-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Empty state message */
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: var(--primary-text);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Error message - standardized */
+.error-message {
+  background-color: rgba(238, 13, 13, 0.1);
+  border-left: 4px solid var(--invalid);
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  color: var(--invalid);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.9rem;
+}
+
+/* Loading spinner - standardized */
+.loading-spinner {
+  text-align: center;
+  padding: 20px;
+  color: var(--primary-text);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .filter-group {
+    min-width: 100%;
+  }
+  
+  .filter-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .filter-actions button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .drops-table th,
+  .drops-table td {
+    padding: 8px 5px;
+    font-size: 0.9rem;
+  }
+}

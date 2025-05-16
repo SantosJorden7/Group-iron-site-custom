@@ -1,0 +1,48 @@
+/**
+ * Dashboard Component Styling
+ * 
+ * Follows the Group Ironmen UI consistency standards with
+ * OSRS-themed styling and visual elements.
+ */
+
+.dashboard-container {
+  padding: 20px;
+  background-color: var(--background);
+}
+
+/* Group Header Styling */
+.group-header .group-card {
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  margin-bottom: 15px;
+}
+
+.group-title {
+  font-family: "rsbold";
+  color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 15px;
+}
+
+.group-info {
+  font-family: "rssmall";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.group-info p {
+  margin-bottom: 5px;
+}
+
+/* Feature Panels Layout */
+.dashboard-container .row {
+  margin-bottom: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,8 @@
+tree 7bb07fcf79df029ee6765fe026cf8c071b24f2f3
+parent 11c1d3fad00273e4343e13161be0068cdcf37378
+author Sage Martin <sagethemartin@gmail.com> 1652022316 -0500
+committer Sage Martin <sagethemartin@gmail.com> 1652030179 -0500
+
+Add Support for Seed Vault
+
+Simple support for Seed Vaults

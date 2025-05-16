@@ -1,0 +1,115 @@
+/**
+ * Main Application Styling
+ * 
+ * Follows the Group Ironmen UI consistency standards with
+ * OSRS-themed elements and styling.
+ */
+
+:root {
+  --background: #050505;
+  --elevated: #111111;
+  --primary-text: #d9d9d9;
+  --orange: #ff981f;
+  --light-border: #333333;
+  --black: #000000;
+  --invalid: #cc3333;
+}
+
+/* Base Application Styling */
+body {
+  background-color: var(--background);
+  color: var(--primary-text);
+  font-family: "rssmall", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* OSRS-themed Navbar */
+.osrs-navbar {
+  background-color: var(--elevated) !important;
+  border-bottom: 1px solid var(--light-border);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.osrs-brand {
+  font-family: "rsbold";
+  color: var(--orange) !important;
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.osrs-nav-link {
+  font-family: "rssmall";
+  color: var(--primary-text) !important;
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s ease;
+}
+
+.osrs-nav-link:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Loading Spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.osrs-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 152, 31, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--orange);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container p {
+  font-family: "rssmall";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+/* Footer */
+.osrs-footer {
+  background-color: var(--elevated);
+  border-top: 1px solid var(--light-border);
+  padding: 15px 0;
+  text-align: center;
+}
+
+.osrs-footer p {
+  font-family: "rssmall";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 10px;
+  }
+}

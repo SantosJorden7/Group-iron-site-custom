@@ -1,0 +1,60 @@
+/**
+ * Global CSS Styles
+ * Applies base styling and font imports for the Group Ironmen application
+ */
+
+/* RuneScape Font Imports */
+@font-face {
+  font-family: 'rsbold';
+  src: url('../public/fonts/runescape-bold.woff2') format('woff2'),
+       url('../public/fonts/runescape-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'rssmall';
+  src: url('../public/fonts/runescape-small.woff2') format('woff2'),
+       url('../public/fonts/runescape-small.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Styles */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Utility Classes */
+.text-orange {
+  color: var(--orange);
+}
+
+.text-shadow {
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+/* Focus Styles for Accessibility */
+:focus {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}

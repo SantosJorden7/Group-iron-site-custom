@@ -1,0 +1,13 @@
+social-links {
+  display: flex;
+  align-items: center;
+}
+
+social-links a {
+  display: flex;
+  align-items: center;
+}
+
+social-links a + a {
+  margin-left: 0.5em;
+}
