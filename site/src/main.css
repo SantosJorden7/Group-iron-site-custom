@@ -16,6 +16,17 @@
   --rsbackground-dark: url(/ui/297-0-dark.png);
 }
 
+/* Fix for black screen issues - ensure core UI elements are visible */
+body, 
+html,
+.authed-section,
+.unauthed-section,
+.authed-section__main-content,
+.authed-section__outlet {
+  display: block !important;
+  visibility: visible !important;
+}
+
 html,
 body {
   width: 100%;
@@ -29,6 +40,21 @@ body {
   font-size: 16px;
   font-family: "rssmall", ui-sans-serif, Arial, sans-serif;
   text-shadow: 1.3px 1.3px var(--black);
+}
+
+.authed-section__main-content {
+  display: flex !important;
+}
+
+.side-panel {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.feature-panel {
+  margin-bottom: 10px;
+  padding: 10px;
+  min-height: 100px;
 }
 
 h1,

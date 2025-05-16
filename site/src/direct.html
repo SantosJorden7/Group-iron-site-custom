@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Group Ironmen Direct</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/app.css">
+    <style>
+      body {
+        background-color: #000;
+        color: #ff981f;
+        font-family: 'rssmall', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      .app-container {
+        display: flex;
+        height: 100vh;
+      }
+      .content-area {
+        flex: 1;
+        padding: 20px;
+      }
+      .side-panel {
+        width: 300px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-left: 1px solid #ff981f;
+        padding: 10px;
+        overflow-y: auto;
+      }
+      .panel {
+        background-color: rgba(50, 50, 50, 0.5);
+        border: 1px solid #ff981f;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 3px;
+      }
+      @font-face {
+        font-family: 'rssmall';
+        src: url('/fonts/RuneScape-Chat-07.ttf') format('truetype');
+      }
+      @font-face {
+        font-family: 'rsbold';
+        src: url('/fonts/RuneScape-Chat-Bold-07.ttf') format('truetype');
+      }
+      .rsborder {
+        border: 2px solid #ff981f;
+      }
+      .rsbackground {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="content-area rsbackground">
+        <h1>Group Ironmen</h1>
+        <div class="panel">
+          <h2>Welcome</h2>
+          <p>This is a direct access page that bypasses the complex routing to diagnose rendering issues.</p>
+        </div>
+      </div>
+      
+      <div class="side-panel" id="side-panel">
+        <h2>Panels</h2>
+        
+        <div class="panel rsborder">
+          <h3>Activities</h3>
+          <div id="activities-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>Boss Strategy</h3>
+          <div id="boss-strategy-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>Group Challenges</h3>
+          <div id="group-challenges-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>Group Milestones</h3>
+          <div id="group-milestones-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>Shared Calendar</h3>
+          <div id="shared-calendar-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>Slayer Tasks</h3>
+          <div id="slayer-tasks-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>Valuable Drops</h3>
+          <div id="valuable-drops-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>DPS Calculator</h3>
+          <div id="dps-calculator-panel"></div>
+        </div>
+        
+        <div class="panel rsborder">
+          <h3>Collection Log</h3>
+          <div id="collection-log-panel"></div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="/app.js"></script>
+  </body>
+</html>

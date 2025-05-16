@@ -34,6 +34,16 @@ app.use(compression());
 app.use(express.static('public'));
 app.use(express.static('.'));
 
+// Add a test route to diagnose rendering issues
+app.get('/test', (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/test-page.html'));
+});
+
+// Add direct access page that bypasses complex routing
+app.get('/direct', (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/direct.html'));
+});
+
 if (backend) {
   console.log(`Backend for api calls: ${backend}`);
   app.use(express.json());

@@ -1,0 +1,235 @@
+/* SlayerTaskPanel.css */
+.slayer-task-panel {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.slayer-task-panel .osrs-header {
+  background-color: var(--elevated);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--light-border);
+}
+
+.slayer-task-panel .osrs-header h4 {
+  font-family: "rsbold";
+  margin-bottom: 0;
+  text-shadow: 1.3px 1.3px var(--black);
+  color: var(--orange);
+}
+
+.slayer-task-panel .osrs-spinner {
+  color: var(--orange);
+}
+
+/* Tabs styling */
+.slayer-task-panel .osrs-tabs .nav-link {
+  color: var(--primary-text);
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  margin-right: 5px;
+  font-family: "rssmall";
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s ease;
+}
+
+.slayer-task-panel .osrs-tabs .nav-link.active {
+  background-color: var(--elevated);
+  color: var(--orange);
+  border-bottom-color: var(--elevated);
+  font-weight: bold;
+}
+
+.slayer-task-panel .osrs-tabs .nav-link:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Current task card styling */
+.current-task-card {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+}
+
+.current-task-card .card-header {
+  background-color: var(--elevated);
+  border-bottom: 1px solid var(--light-border);
+  font-family: "rsbold";
+  color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.current-task-card .card-body {
+  background-color: var(--background);
+}
+
+.current-task-card .card-footer {
+  background-color: var(--elevated);
+  border-top: 1px solid var(--light-border);
+}
+
+/* Wiki info card styling */
+.wiki-info-card {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+}
+
+.wiki-info-card .card-header {
+  background-color: var(--elevated);
+  border-bottom: 1px solid var(--light-border);
+  color: var(--primary-text);
+}
+
+.wiki-info-card .card-header h5 {
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.wiki-badge {
+  font-family: "rssmall";
+  font-size: 0.8rem;
+}
+
+.tactics-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Stats cards */
+.stats-card {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  height: 100%;
+}
+
+.stats-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-card h5 {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.stats-value {
+  font-family: "rsbold";
+  color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+/* Table styling */
+.task-history-table {
+  color: var(--primary-text);
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+}
+
+.task-history-table thead {
+  background-color: var(--elevated);
+}
+
+.task-history-table th {
+  font-family: "rsbold";
+  color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.task-history-table td {
+  font-family: "rssmall";
+  border-top: 1px solid var(--light-border);
+}
+
+.task-history-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Form styling */
+.slayer-task-panel .form-label {
+  font-family: "rssmall";
+  margin-bottom: 5px;
+  color: var(--primary-text);
+}
+
+.slayer-task-panel .form-control,
+.slayer-task-panel .form-select {
+  background-color: var(--background);
+  color: var(--primary-text);
+  border: 1px solid var(--light-border);
+  font-family: "rssmall";
+  padding: 8px 12px;
+}
+
+.slayer-task-panel .form-control:focus,
+.slayer-task-panel .form-select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 0.25rem rgba(255, 144, 0, 0.25);
+}
+
+.slayer-task-panel .form-check-input:checked {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+/* Button styling */
+.slayer-task-panel .btn-primary {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  font-family: "rssmall";
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s ease;
+}
+
+.slayer-task-panel .btn-primary:hover {
+  background-color: darkorange;
+  border-color: darkorange;
+  transform: translateY(1px);
+}
+
+.slayer-task-panel .btn-secondary,
+.slayer-task-panel .btn-outline-secondary {
+  font-family: "rssmall";
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s ease;
+}
+
+.slayer-task-panel .btn:disabled {
+  opacity: 0.6;
+}
+
+/* Alert styling */
+.slayer-task-panel .alert {
+  border: 1px solid var(--light-border);
+}
+
+.slayer-task-panel .alert-danger {
+  background-color: var(--invalid);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stats-value {
+    font-size: 1.5rem;
+  }
+  
+  .slayer-task-panel .osrs-tabs .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}

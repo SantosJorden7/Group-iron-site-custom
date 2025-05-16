@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import valuableDropsData from './valuable-drops-data';
-import { EventBus } from '../../services/event-bus';
+import { EventBus } from '../../services/event-bus.js';
 
 /**
  * Custom hook for accessing valuable drops data in React components
@@ -100,8 +100,8 @@ export function useValuableDrops(initialFilters = {}) {
     };
     
     // Subscribe to events
-    EventBus.subscribe('valuable-drops-loaded', dropsLoadedHandler);
-    EventBus.subscribe('valuable-drops-error', dropsErrorHandler);
+    EventBus.on('valuable-drops-loaded', dropsLoadedHandler);
+    EventBus.on('valuable-drops-error', dropsErrorHandler);
     
     // Cleanup subscriptions
     return () => {

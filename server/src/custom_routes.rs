@@ -21,11 +21,15 @@ async fn health_check() -> impl Responder {
         "features": [
             "activities",
             "boss-strategy",
+            "collection-log",
+            "data-sync",
+            "dps-calculator",
             "group-challenges",
             "group-milestones",
             "shared-calendar",
             "slayer-tasks",
-            "valuable-drops"
+            "valuable-drops",
+            "wiki-integration"
         ]
     }))
 }

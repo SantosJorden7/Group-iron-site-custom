@@ -5,7 +5,17 @@ class Router {
     this.registeredRoutes = new Map();
     this.routeAliases = new Map();
     this.activeRoute = null;
-    window.addEventListener("locationchange", this.handleLocationChange.bind(this));
+    
+    // Use the bound handler so we can reference it later if needed
+    this._handleLocationChangeRef = this.handleLocationChange.bind(this);
+    
+    // Try both the addEventListener approach and direct assignment for maximum compatibility
+    try {
+      window.addEventListener("locationchange", this._handleLocationChangeRef);
+    } catch (error) {
+      console.warn("addEventListener failed for locationchange, using direct assignment");
+      window.onlocationchange = this._handleLocationChangeRef;
+    }
   }
 
   register(path, route) {
@@ -33,7 +43,7 @@ class Router {
   }
 
   unregister(path) {
-    this.registeredRoute.delete(path);
+    this.registeredRoutes.delete(path);
   }
 
   get location() {
@@ -108,6 +118,15 @@ history.replaceState = ((f) =>
     window.dispatchEvent(new Event("locationchange"));
     return ret;
   })(history.replaceState);
-window.addEventListener("popstate", () => {
-  window.dispatchEvent(new Event("locationchange"));
-});
+
+// Try both techniques for attaching the popstate event
+try {
+  window.addEventListener("popstate", () => {
+    window.dispatchEvent(new Event("locationchange"));
+  });
+} catch (error) {
+  console.warn("addEventListener failed for popstate, using direct assignment");
+  window.onpopstate = () => {
+    window.dispatchEvent(new Event("locationchange"));
+  };
+}

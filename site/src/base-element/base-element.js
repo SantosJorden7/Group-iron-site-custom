@@ -1,5 +1,6 @@
 import { pubsub } from "../data/pubsub";
 import { tooltipManager } from "../rs-tooltip/tooltip-manager";
+import eventListenerRegistry from "../utils/eventListenerRegistry";
 
 export class BaseElement extends HTMLElement {
   constructor() {
@@ -57,7 +58,10 @@ export class BaseElement extends HTMLElement {
     if (!this.eventListeners.has(subject)) this.eventListeners.set(subject, new Set());
     if (!this.eventListeners.get(subject).has(eventName)) {
       this.eventListeners.get(subject).add(eventName);
-      subject.addEventListener(
+      
+      // Use our registry instead of direct addEventListener
+      const removeListener = eventListenerRegistry.add(
+        subject,
         eventName,
         handler,
         Object.assign(
@@ -67,7 +71,8 @@ export class BaseElement extends HTMLElement {
           options
         )
       );
-      this.eventUnbinders.add(() => subject.removeEventListener(eventName, handler));
+      
+      this.eventUnbinders.add(removeListener);
     }
   }
 

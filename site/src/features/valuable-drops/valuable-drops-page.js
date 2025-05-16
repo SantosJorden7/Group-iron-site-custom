@@ -1,7 +1,7 @@
-import { BaseElement } from "../base-element/base-element.js";
-import { router } from "../router.js";
+import { BaseElement } from "../../base-element/base-element.js";
+import { router } from "../../router.js";
 import ValuableDrops from "./ValuableDrops.jsx";
-import { reactToHtml } from "../react-utils/react-to-html.js";
+import { reactToHtml } from "../../react-utils/react-to-html.js";
 
 /**
  * Valuable Drops Page

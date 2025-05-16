@@ -13,46 +13,47 @@ export class PlayerPanel extends BaseElement {
     super.connectedCallback();
     this.playerName = this.getAttribute("player-name");
     this.render();
-    this.contentArea = this.querySelector(".player-panel__content");
-    this.eventListener(this.querySelector(".player-panel__minibar"), "click", this.handleMiniBarClick.bind(this));
-    this.eventListener(
-      this.querySelector(".player-panel__collection-log"),
-      "click",
-      this.handleCollectionLogClick.bind(this)
-    );
+    
+    // Add event listener safely
+    const panelElement = this.querySelector(".player-panel");
+    if (panelElement) {
+      try {
+        this.eventListener(panelElement, "click", this.clickPanel.bind(this));
+      } catch (e) {
+        console.warn("Could not add click listener to player panel:", e);
+        // Direct assignment as fallback
+        panelElement.onclick = this.clickPanel.bind(this);
+      }
+    } else {
+      console.warn("Player panel element not found, creating container");
+      const container = document.createElement('div');
+      container.className = "player-panel";
+      
+      const nameElement = document.createElement('div');
+      nameElement.className = "player-panel__name";
+      nameElement.textContent = this.playerName || "Player";
+      
+      container.appendChild(nameElement);
+      this.appendChild(container);
+      
+      // Add direct click handler
+      container.onclick = this.clickPanel.bind(this);
+    }
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
   }
 
-  handleCollectionLogClick() {
-    const collectionLogEl = document.createElement("collection-log");
-    collectionLogEl.setAttribute("player-name", this.playerName);
-    document.body.appendChild(collectionLogEl);
-  }
-
-  handleMiniBarClick(event) {
-    const component = event.target.getAttribute("data-component");
-    if (component && this.activeComponent !== component) {
-      this.contentArea.innerHTML = `<${component} player-name="${this.playerName}"></${component}>`;
-
-      if (this.activeComponent) {
-        this.querySelector(`button[data-component="${this.activeComponent}"]`).classList.remove(
-          "player-panel__tab-active"
-        );
-      }
-      this.querySelector(`button[data-component="${component}"]`).classList.add("player-panel__tab-active");
-      this.activeComponent = component;
-      this.classList.add("expanded");
-    } else if (this.activeComponent && this.activeComponent === component) {
-      this.contentArea.innerHTML = "";
-      this.querySelector(`button[data-component="${this.activeComponent}"]`).classList.remove(
-        "player-panel__tab-active"
-      );
-      this.activeComponent = null;
-      this.classList.remove("expanded");
+  clickPanel() {
+    // Use direct URL navigation to avoid potential event listener issues
+    if (this.playerName) {
+      window.location.href = `/#/player/${this.playerName}`;
     }
   }
 }
-customElements.define("player-panel", PlayerPanel);
+
+// Register the custom element only once
+if (!customElements.get('player-panel')) {
+  customElements.define("player-panel", PlayerPanel);
+}

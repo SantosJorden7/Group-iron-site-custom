@@ -1,0 +1,806 @@
+/* Group Milestones Panel Styles */
+
+.milestones-panel {
+  background-color: var(--background);
+  border-radius: 8px;
+  border: 1px solid var(--light-border);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.milestones-header {
+  background-color: var(--elevated);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--light-border);
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.milestones-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.milestone-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--light-border);
+  background-color: var(--background);
+  color: var(--primary-text);
+  transition: all 0.3s ease;
+}
+
+.milestone-item:hover {
+  background-color: var(--elevated);
+}
+
+.milestone-item:last-child {
+  border-bottom: none;
+}
+
+.milestone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.milestone-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--orange);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-description {
+  margin: 0 0 12px 0;
+  color: var(--primary-text);
+  font-family: "rssmall";
+}
+
+.milestone-meta {
+  font-size: 14px;
+  color: var(--primary-text);
+  opacity: 0.7;
+  margin-bottom: 8px;
+  font-family: "rssmall";
+}
+
+.milestone-progress-container {
+  margin-top: 16px;
+}
+
+.milestone-progress-bar {
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--elevated);
+  overflow: hidden;
+}
+
+.milestone-progress-fill {
+  height: 100%;
+  background-color: var(--orange);
+  transition: width 0.3s ease;
+}
+
+.milestone-status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+  font-family: "rssmall";
+}
+
+.milestone-status-active {
+  background-color: #4caf50;
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.milestone-status-completed {
+  background-color: var(--orange);
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.milestone-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.milestone-action-btn {
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.milestone-action-btn:hover {
+  background-color: var(--orange);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.milestone-complete-btn {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+.milestone-delete-btn {
+  background-color: var(--invalid);
+  border-color: var(--invalid);
+}
+
+.milestones-filters {
+  background-color: var(--elevated);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  border: 1px solid var(--light-border);
+}
+
+.milestones-filters-header {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestones-filter-group {
+  margin-bottom: 12px;
+}
+
+.milestones-filter-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1px 1px var(--black);
+}
+
+.milestones-filter-select,
+.milestones-filter-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--light-border);
+  background-color: var(--background);
+  color: var(--primary-text);
+  font-family: "rssmall";
+  transition: all 0.3s ease;
+}
+
+.milestones-filter-select:focus,
+.milestones-filter-input:focus {
+  border-color: var(--orange);
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+}
+
+.milestones-filter-checkbox {
+  margin-right: 8px;
+}
+
+.milestone-type-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-right: 8px;
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "rssmall";
+}
+
+.milestone-type-quest {
+  background-color: #673ab7;
+}
+
+.milestone-type-boss {
+  background-color: #e91e63;
+}
+
+.milestone-type-skill {
+  background-color: #2196f3;
+}
+
+.milestone-type-item {
+  background-color: #ff9800;
+}
+
+.milestone-type-custom {
+  background-color: #607d8b;
+}
+
+.milestone-add-btn {
+  background-color: var(--orange);
+  border: none;
+  color: var(--primary-text);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-add-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.milestone-form {
+  background-color: var(--elevated);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  border: 1px solid var(--light-border);
+}
+
+.milestone-form-header {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-form-group {
+  margin-bottom: 16px;
+}
+
+.milestone-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1px 1px var(--black);
+}
+
+.milestone-form-input,
+.milestone-form-textarea,
+.milestone-form-select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--light-border);
+  background-color: var(--background);
+  color: var(--primary-text);
+  font-family: "rssmall";
+  transition: all 0.3s ease;
+}
+
+.milestone-form-input:focus,
+.milestone-form-textarea:focus,
+.milestone-form-select:focus {
+  border-color: var(--orange);
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+}
+
+.milestone-form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.milestone-form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.milestone-form-submit {
+  background-color: var(--orange);
+  border: none;
+  color: var(--primary-text);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-form-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.milestone-form-cancel {
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-form-cancel:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.wiki-item-reference {
+  color: var(--orange);
+  cursor: pointer;
+  border-bottom: 1px dotted var(--orange);
+  transition: all 0.3s;
+  font-family: "rssmall";
+}
+
+.wiki-item-reference:hover {
+  opacity: 0.8;
+}
+
+.milestone-wiki-data {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: var(--background);
+  border-radius: 4px;
+  border: 1px solid var(--light-border);
+}
+
+.milestone-wiki-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--orange);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-wiki-description {
+  margin-bottom: 12px;
+  font-family: "rssmall";
+  color: var(--primary-text);
+}
+
+.group-milestones-panel {
+  padding: 20px 0;
+  color: var(--primary-text);
+}
+
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.milestone-card {
+  border: 1px solid var(--light-border);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: var(--background);
+}
+
+.milestone-card:hover {
+  transform: translateY(-1px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+}
+
+.milestone-completed {
+  border-left: 4px solid var(--orange);
+  background-color: rgba(255, 160, 0, 0.05);
+}
+
+.milestone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.milestone-title {
+  font-family: "rsbold";
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-right: 10px;
+  text-shadow: 1.3px 1.3px var(--black);
+  color: var(--primary-text);
+}
+
+.milestone-date {
+  color: var(--primary-text);
+  opacity: 0.7;
+  text-align: right;
+  font-family: "rssmall";
+}
+
+.milestone-description {
+  margin-bottom: 15px;
+  color: var(--primary-text);
+  font-family: "rssmall";
+}
+
+/* Progress indicator */
+.milestone-progress {
+  margin: 12px 0;
+}
+
+.milestone-progress-text {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  color: var(--primary-text);
+  opacity: 0.9;
+  font-family: "rssmall";
+}
+
+/* Data source badges */
+.data-source-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 8px;
+  cursor: help;
+  background-color: var(--elevated) !important;
+  border: 1px solid var(--light-border);
+}
+
+.data-source-badge[variant="success"] {
+  background-color: rgba(40, 167, 69, 0.8) !important;
+}
+
+.data-source-badge[variant="info"] {
+  background-color: rgba(23, 162, 184, 0.8) !important;
+}
+
+.data-source-badge[variant="warning"] {
+  background-color: rgba(255, 193, 7, 0.8) !important;
+}
+
+/* Member progress styles */
+.member-progress-container {
+  margin: 15px 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--light-border);
+}
+
+.member-progress-container h6 {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.member-progress-item {
+  margin-bottom: 8px;
+}
+
+.member-progress-name {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-family: "rssmall";
+  color: var(--primary-text);
+}
+
+/* Wiki data */
+.milestone-wiki-data {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: var(--elevated);
+  border-radius: 5px;
+  border-left: 3px solid rgba(255, 193, 7, 0.8);
+}
+
+.milestone-wiki-title {
+  font-family: "rsbold";
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-wiki-description {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--primary-text);
+  opacity: 0.9;
+  font-family: "rssmall";
+}
+
+.wiki-item-reference {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--orange);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-family: "rssmall";
+}
+
+.wiki-item-reference:hover {
+  color: var(--orange);
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Wise Old Man data */
+.milestone-wom-data {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: var(--elevated);
+  border-radius: 5px;
+  border-left: 3px solid rgba(23, 162, 184, 0.8);
+}
+
+.milestone-wom-title {
+  font-family: "rsbold";
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-wom-description {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--primary-text);
+  opacity: 0.9;
+  font-family: "rssmall";
+}
+
+.wom-item-reference {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--orange);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-family: "rssmall";
+}
+
+.wom-item-reference:hover {
+  color: var(--orange);
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Data sources panel */
+.data-sources-panel {
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+}
+
+.data-sources-panel .card-header {
+  font-family: "rsbold";
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.data-sources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.data-source-item {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--background);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border: 1px solid var(--light-border);
+}
+
+.data-source-name {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.data-source-name .badge {
+  margin-right: 6px;
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+}
+
+.data-source-status {
+  display: flex;
+  flex-direction: column;
+  font-family: "rssmall";
+}
+
+.data-source-timestamp {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: var(--primary-text);
+  opacity: 0.7;
+  font-family: "rssmall";
+}
+
+.data-source-priority-info {
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--light-border);
+  color: var(--primary-text);
+  opacity: 0.8;
+  font-family: "rssmall";
+}
+
+/* Actions */
+.milestone-actions {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.milestone-action-btn {
+  background: none;
+  border: 1px solid var(--light-border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "rssmall";
+  color: var(--primary-text);
+}
+
+.milestone-complete-btn {
+  background-color: var(--orange);
+  color: var(--primary-text);
+  border-color: var(--orange);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.milestone-complete-btn:hover {
+  background-color: var(--orange);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.milestone-delete-btn {
+  color: var(--invalid);
+  border-color: var(--invalid);
+}
+
+.milestone-delete-btn:hover {
+  background-color: var(--invalid);
+  color: var(--primary-text);
+  transform: translateY(-1px);
+}
+
+/* Filter controls */
+.milestone-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.filter-select {
+  min-width: 140px;
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  border: 1px solid var(--light-border);
+  font-family: "rssmall";
+  padding: 8px 12px;
+}
+
+.filter-select option {
+  background-color: var(--background);
+  color: var(--primary-text);
+  font-family: "rssmall";
+}
+
+/* Add milestone form */
+.add-milestone-form {
+  margin-bottom: 20px;
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+}
+
+.add-milestone-form .card-header {
+  font-family: "rsbold";
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.add-milestone-form .form-label {
+  font-family: "rssmall";
+  color: var(--primary-text);
+  margin-bottom: 5px;
+}
+
+.add-milestone-form .form-control {
+  background-color: var(--background);
+  color: var(--primary-text);
+  border: 1px solid var(--light-border);
+  font-family: "rssmall";
+  padding: 8px 12px;
+}
+
+.add-milestone-form .btn-primary {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: var(--primary-text);
+  font-family: "rssmall";
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s;
+}
+
+.add-milestone-form .btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.add-milestone-form .btn-primary:disabled {
+  opacity: 0.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .data-sources-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .milestone-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .milestone-filters .form-group {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+/* Timestamp formatting */
+.timestamp {
+  font-size: 0.8rem;
+  color: var(--primary-text);
+  opacity: 0.7;
+  white-space: nowrap;
+  font-family: "rssmall";
+}
+
+/* Custom properties that should be in the global CSS */
+:root {
+  --background: #070707;
+  --elevated: #111111;
+  --light-border: #333333;
+  --primary-text: #e5e5e5;
+  --orange: #c9a639;
+  --invalid: #c0392b;
+  --black: #000000;
+}

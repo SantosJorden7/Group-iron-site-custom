@@ -8,15 +8,42 @@ export class CanvasMap extends BaseElement {
   }
 
   html() {
-    return `{{canvas-map.html}}`;
+    return `<canvas width="1000" height="1000"></canvas>
+<div class="canvas-map__coordinates"></div>`;
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.render();
 
+    setTimeout(() => {
+      this.initCanvasMap();
+    }, 50);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
+
+  initCanvasMap() {
     this.coordinatesDisplay = this.querySelector(".canvas-map__coordinates");
     this.canvas = this.querySelector("canvas");
+    
+    if (!this.canvas) {
+      console.warn("Canvas element not found in canvas-map - creating fallback");
+      this.canvas = document.createElement('canvas');
+      this.canvas.width = 1000;
+      this.canvas.height = 1000;
+      this.appendChild(this.canvas);
+    }
+    
+    if (!this.coordinatesDisplay) {
+      console.warn("Coordinates display not found in canvas-map - creating fallback");
+      this.coordinatesDisplay = document.createElement('div');
+      this.coordinatesDisplay.className = "canvas-map__coordinates";
+      this.appendChild(this.coordinatesDisplay);
+    }
+    
     this.ctx = this.canvas.getContext("2d", { alpha: true });
     this.eventListener(this, "mousedown", this.onPointerDown.bind(this));
     this.eventListener(this, "touchstart", this.onTouchStart.bind(this));
@@ -28,9 +55,23 @@ export class CanvasMap extends BaseElement {
     this.eventListener(this, "mouseleave", this.stopDragging.bind(this));
     this.eventListener(this, "mouseenter", this.stopDragging.bind(this));
     this.eventListener(this, "touchcancel", this.stopDragging.bind(this));
-    this.eventListener(window, "resize", this.onResize.bind(this));
+    
+    // Use direct event assignment for window resize
+    try {
+      this._resizeHandler = this.onResize.bind(this);
+      window.addEventListener("resize", this._resizeHandler);
+    } catch (error) {
+      console.warn("Could not add resize listener via addEventListener, using direct assignment");
+      window.onresize = this._resizeHandler;
+    }
+    
     this.playerMarkers = new Map();
     this.interactingMarkers = new Set();
+    
+    // Initialize with empty member data to prevent errors
+    this.members = [];
+    this.playerCoordinates = {};
+    
     this.subscribe("members-updated", this.handleUpdatedMembers.bind(this));
     this.subscribe("coordinates", this.handleUpdatedCoordinates.bind(this));
 
@@ -83,10 +124,6 @@ export class CanvasMap extends BaseElement {
     window.requestAnimationFrame(this.update);
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback();
-  }
-
   async getMapJson() {
     const response = await fetch("/data/map.json");
     const data = await response.json();
@@ -129,33 +166,56 @@ export class CanvasMap extends BaseElement {
   }
 
   handleUpdatedMembers(members) {
-    this.playerMarkers = new Map();
-
-    for (const member of members) {
-      if (member.name === "@SHARED") continue;
-      this.handleUpdatedCoordinates(member);
+    // Add null check for members
+    if (!Array.isArray(members)) {
+      console.warn("Invalid members data in canvas-map:", members);
+      this.members = [];
+      return;
     }
+    
+    this.members = members.filter((member) => member.name !== "@SHARED");
+    
+    // Initialize playerCoordinates with empty objects for each member
+    this.playerCoordinates = {};
+    this.members.forEach(member => {
+      this.playerCoordinates[member.name] = this.playerCoordinates[member.name] || {};
+    });
   }
 
   isValidCoordinates(coordinates) {
     return !isNaN(coordinates?.x) && !isNaN(coordinates?.y) && !isNaN(coordinates?.plane);
   }
 
-  handleUpdatedCoordinates(member) {
-    const coordinates = member.coordinates || {};
-    if (this.isValidCoordinates(coordinates)) {
-      this.playerMarkers.set(member.name, {
-        label: member.name,
-        coordinates,
-      });
+  handleUpdatedCoordinates(data) {
+    // Make sure we have valid data and player name
+    if (!data || !data.name) {
+      console.warn("Invalid coordinate data:", data);
+      return;
+    }
 
-      if (this.followingPlayer.name === member.name) {
-        this.followingPlayer.coordinates = coordinates;
-      }
-
-      if (this.isGameTileInView(coordinates.x, coordinates.y)) {
-        this.requestUpdate();
-      }
+    const playerName = data.name;
+    
+    // Initialize player coordinates if not already done
+    if (!this.playerCoordinates) {
+      this.playerCoordinates = {};
+    }
+    
+    if (!this.playerCoordinates[playerName]) {
+      this.playerCoordinates[playerName] = {};
+    }
+    
+    this.playerCoordinates[playerName] = data;
+    
+    // Find player in members if following
+    if (this.followingPlayer && this.followingPlayer.name === playerName) {
+      this.followingPlayer = {
+        ...this.followingPlayer,
+        coordinates: data,
+      };
+      
+      const [x, y] = this.gamePositionToCameraCenter(data.x, data.y);
+      this.camera.x.goTo(x, 0.5);
+      this.camera.y.goTo(y, 0.5);
     }
   }
 
@@ -173,7 +233,6 @@ export class CanvasMap extends BaseElement {
     this.followingPlayer.name = null;
   }
 
-  // Converts a position in the runescape world to a camera position at the center of the canvas
   gamePositionToCameraCenter(x, y) {
     const tileCenterOffset = (this.pixelsPerGameTile * this.camera.zoom.current) / 2;
     return [
@@ -182,8 +241,6 @@ export class CanvasMap extends BaseElement {
     ];
   }
 
-  // Converts a position in the runescape world to a client position relative to the camera.
-  // If the result is between [0, canvas.height] and [0, canvas.width] then it is visible.
   gamePositionToClient(x, y) {
     const tileCenterOffset = (this.pixelsPerGameTile * this.camera.zoom.current) / 2;
     return [
@@ -192,12 +249,10 @@ export class CanvasMap extends BaseElement {
     ];
   }
 
-  // Converts a game position to a position on the canvas that we can use to draw on.
   gamePositionToCanvas(x, y) {
     return [x * this.pixelsPerGameTile, -y * this.pixelsPerGameTile + this.tileSize];
   }
 
-  // Checks if a tile in the runescape world is currently visible on the canvas
   isGameTileInView(x, y) {
     const padding = this.tileSize / this.pixelsPerGameTile;
     const [clientLeft, clientTop] = this.gamePositionToClient(x + padding, y - padding);
@@ -219,7 +274,6 @@ export class CanvasMap extends BaseElement {
     this.previousFrameTime = timestamp;
 
     if (this.updateRequested-- > 0 && elapsed > 0) {
-      // Handle the camera panning
       const panStopThreshold = 0.001;
       const speed = this.cursor.dx * this.cursor.dx + this.cursor.dy * this.cursor.dy;
       if (!this.camera.isDragging) {
@@ -231,15 +285,11 @@ export class CanvasMap extends BaseElement {
       if (speed > panStopThreshold) {
         this.cursor.dx /= elapsed * 0.005 + 1;
         this.cursor.dy /= elapsed * 0.005 + 1;
-        // The camera's speed is still high enough to animate it for at least another frame
         doAnotherUpdate = true;
       }
 
-      // Handle the camera zoom
       const zooming = this.camera.zoom.animate(elapsed);
       doAnotherUpdate = zooming || doAnotherUpdate;
-      // Handle player following. We don't want to do it while a zoom is also happening since zoom
-      // performs a translate to keep it centered on the cursor.
       if (!zooming && this.followingPlayer.name) {
         const [x, y] = this.gamePositionToCameraCenter(
           this.followingPlayer.coordinates.x,
@@ -257,7 +307,6 @@ export class CanvasMap extends BaseElement {
       doAnotherUpdate = this.camera.x.animate(elapsed) || doAnotherUpdate;
       doAnotherUpdate = this.camera.y.animate(elapsed) || doAnotherUpdate;
 
-      // Handle the 'fade in' animation for the map tiles
       for (let i = 0; i < this.tilesInView.length; ++i) {
         doAnotherUpdate = this.tilesInView[i].animation?.animate(elapsed) || doAnotherUpdate;
       }
@@ -274,7 +323,6 @@ export class CanvasMap extends BaseElement {
         Math.round(this.camera.y.current)
       );
 
-      // Don't try to load tiles if we are panning a large distance
       const distanceLeftToTravel =
         (Math.abs((this.camera.x.target - this.camera.x.current) / this.camera.x.time) +
           Math.abs((this.camera.y.target - this.camera.y.current) / this.camera.y.time)) /
@@ -391,7 +439,6 @@ export class CanvasMap extends BaseElement {
     for (let plane = 0; plane < groupedByPlane.length; ++plane) {
       const tilesOnPlane = groupedByPlane[plane];
 
-      // Change the opacity based on distance to currently displayed plane
       this.ctx.globalAlpha = 1 - Math.abs(this.plane - 1 - plane) * 0.25;
 
       const positions = [];
@@ -414,7 +461,6 @@ export class CanvasMap extends BaseElement {
     if (!this.locations) return;
     const imageSize = 15;
     const imageSizeHalf = imageSize / 2;
-    // Scale the location icons down with zoom down up to a maximum. Larger number here means a smaller icon.
     const scale = Math.min(this.camera.zoom.current, 3);
     const shift = imageSizeHalf / scale;
     const destinationSize = imageSize / scale;
@@ -522,9 +568,6 @@ export class CanvasMap extends BaseElement {
           this.ctx.globalAlpha = alpha;
           try {
             if (alpha < 1) {
-              // NOTE: Clearing only the area of the image tile while it fades in. If we try
-              // to clear the whole canvas instead, chromium browers will show a small border
-              // around the tiles.
               this.ctx.clearRect(tileWorldX, -tileWorldY, imageSize, imageSize);
             }
             this.ctx.drawImage(tile, tileWorldX, -tileWorldY);
@@ -617,7 +660,6 @@ export class CanvasMap extends BaseElement {
 
   stopDragging() {
     this.classList.remove("dragging");
-    // To handle cases when the pointer stops moving before letting go
     const elapsed = performance.now() - this.cursor.lastPointerMoveTime;
     if (elapsed > 100) {
       this.cursor.dx = 0;
@@ -670,8 +712,6 @@ export class CanvasMap extends BaseElement {
     const elapsed = performance.now() - this.cursor.lastPointerMoveTime;
     this.cursor.lastPointerMoveTime = performance.now();
 
-    // cursor.dx and cursor.dy are calculated as the average movement over 10 frames. This is used
-    // to calculate the speed after dragging has stopped which is used to animate and convey momentum.
     if (elapsed) {
       const eventsToKeep = 10;
       this.cursor.frameX.push(-dx / elapsed);
@@ -722,7 +762,6 @@ export class CanvasMap extends BaseElement {
     });
   }
 
-  // Zooms and keeps a point at the same screen position during the zoom
   zoomOntoPoint(options) {
     if (this.camera.isDragging) return;
     this.cursor.dx = 0;
@@ -730,9 +769,6 @@ export class CanvasMap extends BaseElement {
 
     let newZoom;
     if (options.zoom === undefined) {
-      // Calculate a zoom change that keeps this.tileSize * zoom an integer value.
-      // We don't want the canvas to have a zoom in the transform that makes the map tiles
-      // a non integer size or it will cause black border to show around them.
       const targetTileSize = this.tileSize * options.delta;
       const delta = Math.round(targetTileSize) / this.tileSize;
       if (options.delta > 0) {
@@ -741,7 +777,6 @@ export class CanvasMap extends BaseElement {
         newZoom = Math.min(Math.max(this.camera.zoom.target + delta, this.camera.minZoom), this.camera.maxZoom);
       }
     } else {
-      // touch zoom
       newZoom = Math.min(Math.max(options.zoom, this.camera.minZoom), this.camera.maxZoom);
     }
 
@@ -766,4 +801,6 @@ export class CanvasMap extends BaseElement {
   }
 }
 
-customElements.define("canvas-map", CanvasMap);
+if (!customElements.get('canvas-map')) {
+  customElements.define("canvas-map", CanvasMap);
+}

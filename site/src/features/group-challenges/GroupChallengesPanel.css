@@ -1,0 +1,242 @@
+/* Group Challenges Panel Component Styles */
+.group-challenges-panel {
+  margin-bottom: 30px;
+  border: 1px solid var(--light-border);
+  background-color: var(--background);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.panel-title {
+  color: var(--primary-text);
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+/* Create Challenge Button */
+.create-challenge-btn {
+  transition: all 0.3s ease;
+  font-weight: 500;
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.create-challenge-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+/* Challenge Container and Table */
+.challenges-container {
+  margin-top: 15px;
+}
+
+.challenges-table {
+  color: var(--primary-text);
+  background-color: var(--background);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--light-border);
+}
+
+.challenges-table thead {
+  background-color: var(--elevated);
+}
+
+.challenges-table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 12px;
+  border-bottom: 1px solid var(--light-border);
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.challenges-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--light-border);
+  font-family: "rssmall";
+}
+
+.challenges-table tbody tr:hover {
+  background-color: var(--elevated);
+}
+
+/* Challenge Status Indicators */
+.challenge-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 80px;
+  font-family: "rssmall";
+}
+
+.status-active {
+  background-color: #4caf50;
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.status-completed {
+  background-color: var(--orange);
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.status-expired {
+  background-color: #f44336;
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Challenge Progress */
+.challenge-progress {
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--elevated);
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--orange);
+  transition: width 0.3s ease;
+}
+
+/* Challenge Modal */
+.challenge-modal .modal-content {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+}
+
+.challenge-modal .modal-header {
+  border-bottom: 1px solid var(--light-border);
+  background-color: var(--elevated);
+}
+
+.challenge-modal .modal-title {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.challenge-modal .modal-footer {
+  border-top: 1px solid var(--light-border);
+  background-color: var(--elevated);
+}
+
+.challenge-modal .form-label {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  margin-bottom: 5px;
+  text-shadow: 1px 1px var(--black);
+}
+
+.challenge-modal .form-control,
+.challenge-modal .form-select {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+  font-family: "rssmall";
+  padding: 8px 12px;
+  transition: all 0.3s;
+}
+
+.challenge-modal .form-control:focus,
+.challenge-modal .form-select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+}
+
+.challenge-modal .btn-primary {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s;
+}
+
+.challenge-modal .btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.challenge-modal .btn-secondary {
+  background-color: var(--elevated);
+  border-color: var(--light-border);
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s;
+}
+
+.challenge-modal .btn-secondary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Challenge Details */
+.challenge-details {
+  background-color: var(--elevated);
+  border: 1px solid var(--light-border);
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.challenge-details h4 {
+  color: var(--orange);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+  margin-bottom: 15px;
+}
+
+.challenge-details .detail-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.challenge-details .detail-label {
+  font-weight: bold;
+  min-width: 120px;
+  font-family: "rsbold";
+  color: var(--primary-text);
+}
+
+.challenge-details .detail-value {
+  flex-grow: 1;
+  font-family: "rssmall";
+}
+
+/* Wiki Reference */
+.wiki-reference {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.wiki-item {
+  color: var(--orange);
+  cursor: pointer;
+  border-bottom: 1px dotted var(--orange);
+  transition: all 0.3s;
+  font-family: "rssmall";
+}
+
+.wiki-item:hover {
+  opacity: 0.8;
+}

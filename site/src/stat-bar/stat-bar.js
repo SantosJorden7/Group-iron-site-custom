@@ -1,20 +1,31 @@
 import { BaseElement } from "../base-element/base-element";
 
-export class StatBar extends BaseElement {
+class StatBar extends BaseElement {
   constructor() {
     super();
+    this.ratio = 1.0;
+    this.color = "#00ff00"; // Default green
+    this.bgColor = "#003300"; // Default darker green background
   }
 
   html() {
-    return `{{stat-bar.html}}`;
+    return /*html*/`
+      <div class="stat-bar">
+        <div class="stat-bar__fill"></div>
+      </div>
+    `;
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.render();
-    this.bar = this.querySelector(".stat-bar__current");
-    this.color = this.getAttribute("bar-color");
-    this.bgColor = this.getAttribute("bar-bgcolor");
+    
+    // Get fill element
+    this.fill = this.querySelector(".stat-bar__fill");
+    
+    // Get attributes
+    this.color = this.getAttribute("bar-color") || this.color;
+    this.bgColor = this.getAttribute("bar-bgcolor") || this.bgColor;
 
     if (!this.bgColor && this.color.startsWith("#")) {
       const darkened = this.darkenColor(this.hexToRgb(this.color));
@@ -26,9 +37,12 @@ export class StatBar extends BaseElement {
       this.color = { hue, saturation, lightness };
     }
 
+    // Initialize with default ratio or from attribute
     const ratio = parseFloat(this.getAttribute("bar-ratio"), 10);
     if (!isNaN(ratio)) {
       this.update(ratio);
+    } else {
+      this.update(1.0);
     }
   }
 
@@ -72,16 +86,43 @@ export class StatBar extends BaseElement {
 
   update(ratio) {
     if (!this.isConnected) return;
-    const x = ratio * 100;
-    const color = this.getColor(ratio);
-    // NOTE: Tried doing this using a canvas and a div with a scaled width, both of them would leave gaps between other
-    // bars. This does not leave gaps.
-    if (ratio === 1) {
-      this.style.background = color;
+    
+    // Store the ratio
+    this.ratio = ratio;
+    
+    // Update the fill element width
+    if (this.fill) {
+      this.fill.style.width = `${ratio * 100}%`;
+      this.fill.style.backgroundColor = this.getColor(ratio);
     } else {
-      this.style.background = `linear-gradient(90deg, ${color}, ${x}%, ${this.bgColor} ${x}%)`;
+      // Fallback to the linear gradient approach if fill element is not available
+      const x = ratio * 100;
+      const color = this.getColor(ratio);
+      
+      if (ratio === 1) {
+        this.style.background = color;
+      } else {
+        this.style.background = `linear-gradient(90deg, ${color}, ${x}%, ${this.bgColor} ${x}%)`;
+      }
     }
   }
 }
 
+// Define the custom element
 customElements.define("stat-bar", StatBar);
+
+// Add a direct extension for <div class="stat-bar"> elements
+document.addEventListener("DOMContentLoaded", () => {
+  // Find all elements with class "stat-bar" that are not the custom element
+  const statBars = document.querySelectorAll('div.stat-bar:not(stat-bar)');
+  
+  statBars.forEach(bar => {
+    // Create update method for each div.stat-bar
+    const fill = bar.querySelector('.stat-bar__fill');
+    if (fill) {
+      bar.update = (ratio) => {
+        fill.style.width = `${ratio * 100}%`;
+      };
+    }
+  });
+});

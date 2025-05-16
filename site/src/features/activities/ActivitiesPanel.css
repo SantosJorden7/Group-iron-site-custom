@@ -1,0 +1,181 @@
+/* Activities Panel Component Styles */
+.activities-panel {
+  margin-bottom: 30px;
+  border: 1px solid var(--light-border);
+  background-color: var(--background);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.activities-panel .card-header {
+  background-color: var(--elevated);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.activities-panel .osrs-header h4 {
+  font-family: "rsbold";
+  color: var(--primary-text);
+  text-shadow: 1.3px 1.3px var(--black);
+  margin: 0;
+}
+
+/* View Mode Buttons */
+.view-mode-btn {
+  min-width: 110px;
+  transition: all 0.3s;
+}
+
+.view-mode-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Activity Table */
+.activities-table-container {
+  overflow-x: auto;
+}
+
+.activities-table {
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--primary-text);
+}
+
+.activities-table th {
+  background-color: var(--elevated);
+  color: var(--primary-text);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+  text-align: left;
+  padding: 12px;
+  border: 1px solid var(--light-border);
+}
+
+.activities-table td {
+  padding: 12px;
+  vertical-align: middle;
+  border: 1px solid var(--light-border);
+  font-family: "rssmall";
+}
+
+.activities-table tbody tr:hover {
+  background-color: var(--elevated);
+}
+
+/* Table Cells */
+.activities-table strong {
+  font-family: "rsbold";
+  text-shadow: 1px 1px var(--black);
+}
+
+.activities-table small.text-muted {
+  opacity: 0.7;
+}
+
+.category-badge {
+  font-family: "rssmall";
+  padding: 5px 10px;
+}
+
+/* Spinner and Loading States */
+.osrs-spinner {
+  color: var(--orange);
+}
+
+/* Modal styles */
+.osrs-modal .modal-content {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+}
+
+.osrs-modal .modal-header {
+  background-color: var(--elevated);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.osrs-modal .modal-header .modal-title {
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+.osrs-modal .modal-footer {
+  border-top: 1px solid var(--light-border);
+}
+
+.osrs-modal .form-label {
+  font-family: "rsbold";
+  margin-bottom: 5px;
+  text-shadow: 1px 1px var(--black);
+}
+
+.osrs-modal .form-control,
+.osrs-modal .form-select {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+  font-family: "rssmall";
+  padding: 8px 12px;
+  transition: all 0.3s;
+}
+
+.osrs-modal .form-control:focus,
+.osrs-modal .form-select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+}
+
+.osrs-modal .btn-primary {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+  transition: all 0.3s;
+}
+
+.osrs-modal .btn-primary:hover {
+  background-color: var(--orange);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.osrs-modal .btn-secondary {
+  background-color: var(--elevated);
+  border-color: var(--elevated);
+  font-family: "rsbold";
+  text-shadow: 1.3px 1.3px var(--black);
+}
+
+/* Form elements */
+.form-label {
+  font-family: "rsbold";
+  margin-bottom: 5px;
+  text-shadow: 1px 1px var(--black);
+}
+
+.form-control,
+.form-select {
+  background-color: var(--background);
+  border: 1px solid var(--light-border);
+  color: var(--primary-text);
+  font-family: "rssmall";
+  padding: 8px 12px;
+  transition: all 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+}
+
+/* Alert styling */
+.alert-danger {
+  background-color: var(--invalid);
+  border-color: var(--invalid);
+  color: white;
+}
+
+.alert-info {
+  color: var(--primary-text);
+  background-color: var(--elevated);
+  border-color: var(--light-border);
+}

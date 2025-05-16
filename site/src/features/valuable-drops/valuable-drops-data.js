@@ -6,7 +6,7 @@
  */
 
 import ValuableDropsService from './valuable-drops-service';
-import { EventBus } from '../../services/event-bus';
+import { EventBus } from '../../services/event-bus.js';
 
 class ValuableDropsData {
   constructor() {
@@ -28,9 +28,10 @@ class ValuableDropsData {
       direction: 'desc'
     };
     
-    // Subscribe to relevant events
-    EventBus.subscribe('player-data-updated', this.refreshData.bind(this));
-    EventBus.subscribe('custom-plugin-data-received', this.handlePluginData.bind(this));
+    // Subscribe to relevant events using the correct EventBus methods
+    // The original code used 'subscribe' but the EventBus uses 'on'
+    EventBus.on('player-data-updated', this.refreshData.bind(this));
+    EventBus.on('custom-plugin-data-received', this.handlePluginData.bind(this));
   }
   
   /**

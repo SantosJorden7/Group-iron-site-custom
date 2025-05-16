@@ -3,6 +3,7 @@ const path = require('path');
 const { minify } = require("terser");
 const { performance } = require('perf_hooks');
 const CleanCSS = require('clean-css');
+const jsxPlugin = require('./react-jsx-plugin');
 
 const cleanCSSInstance = new CleanCSS({});
 const productionMode = process.argv.some((arg) => arg === '--prod');
@@ -83,7 +84,7 @@ const htmlBuildPlugin = {
     const imagesToInline = [
       "/ui/border-button.png",
       "/ui/border-button-dark.png",
-      "/ui/checkbox.png",
+      "/ui/checkbox.png", 
       "/ui/border.png",
       "/ui/border-dark.png",
       "/ui/border-tiny.png",
@@ -93,26 +94,58 @@ const htmlBuildPlugin = {
     ];
 
     build.onEnd(async () => {
-      let htmlFile = await fs.promises.readFile("src/index.html", "utf8");
+      try {
+        // Read the original HTML template
+        let htmlFile = await fs.promises.readFile("src/index.html", "utf8");
 
-      const cssFiles = ['src/main.css', ...components.map((component) => `./src/${component}/${component}.css`)];
-      const cssReadResults = await Promise.all(cssFiles.map((cssFile) => fs.promises.readFile(cssFile, "utf8")));
-      let css = cssReadResults.join('');
+        // Prepare and inject CSS
+        const cssFiles = ['src/main.css', ...components.map((component) => `./src/${component}/${component}.css`)];
+        const cssReadResults = await Promise.all(cssFiles.map((cssFile) => {
+          try {
+            return fs.promises.readFile(cssFile, "utf8");
+          } catch (error) {
+            console.error(`Error reading CSS file: ${cssFile}`, error);
+            return '';
+          }
+        }));
+        let css = cssReadResults.join('');
 
-      for (imagePath of imagesToInline) {
-        const imageData = await fs.promises.readFile(`public/${imagePath}`, "base64");
-        css = css.replace(imagePath, `data:image/png;base64,${imageData}`);
+        for (imagePath of imagesToInline) {
+          try {
+            const imageData = await fs.promises.readFile(`public/${imagePath}`, "base64");
+            css = css.replace(imagePath, `data:image/png;base64,${imageData}`);
+          } catch (error) {
+            console.error(`Error inlining image: ${imagePath}`, error);
+          }
+        }
+
+        if (productionMode) {
+          css = cleanCSSInstance.minify(css).styles;
+        }
+        
+        // Replace CSS placeholder
+        htmlFile = htmlFile.replace("{{style}}", css);
+        
+        // Create script tag for app.js
+        const scriptTag = '<script src="app.js"></script>';
+        
+        // Find the position of the {{js}} placeholder
+        const jsPosition = htmlFile.indexOf('<script>{{js}}</script>');
+        
+        if (jsPosition !== -1) {
+          // Replace the {{js}} placeholder with our app.js script tag
+          htmlFile = htmlFile.replace('<script>{{js}}</script>', scriptTag);
+        } else {
+          // If the placeholder isn't found, add the script tag before the closing body tag
+          htmlFile = htmlFile.replace('</body>', scriptTag + '</body>');
+        }
+        
+        // Write the final HTML file
+        await fs.promises.writeFile("public/index.html", htmlFile);
+        console.log('Successfully wrote index.html with app.js script tag');
+      } catch (error) {
+        console.error('Error in htmlBuildPlugin:', error);
       }
-
-      if (productionMode) {
-        css = cleanCSSInstance.minify(css).styles;
-      }
-      htmlFile = htmlFile.replace("{{style}}", css);
-
-      const jsContent = await fs.promises.readFile('public/app.js', 'utf8');
-      htmlFile = htmlFile.replace("{{js}}", jsContent);
-
-      await fs.promises.writeFile("public/index.html", htmlFile);
     });
   }
 };
@@ -158,8 +191,37 @@ function build() {
     minify: false,
     format: 'esm',
     outfile: 'public/app.js',
-    plugins: [componentBuildPlugin, minifyJsPlugin, htmlBuildPlugin, buildLoggingPlugin, mapJsonPlugin]
-  }).catch((error) => console.error(error));
+    plugins: [
+      jsxPlugin,
+      componentBuildPlugin, 
+      minifyJsPlugin, 
+      htmlBuildPlugin, 
+      buildLoggingPlugin, 
+      mapJsonPlugin
+    ],
+    loader: { 
+      '.js': 'jsx',
+      '.jsx': 'jsx',
+      '.png': 'file',
+      '.jpg': 'file',
+      '.gif': 'file',
+      '.svg': 'file'
+    },
+    resolveExtensions: ['.js', '.jsx', '.json'],
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
+    define: {
+      'process.env.NODE_ENV': productionMode ? '"production"' : '"development"',
+      'process.env.API_URL': '"http://localhost:8080/api"'
+    },
+    alias: {
+      '@features': path.resolve(__dirname, 'src/features'),
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@store': path.resolve(__dirname, 'src/store')
+    }
+  }).catch(() => process.exit(1));
 }
 
 const watch = process.argv.find((arg) => arg === "--watch");
